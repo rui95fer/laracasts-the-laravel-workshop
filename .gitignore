@@ -1,40 +1,64 @@
-# Node.js
-node_modules/
+# Laravel & PHP
+/vendor/
+/node_modules/
 
-# Vite
-/dist/
+# Laravel environment files
+.env
+.env.*
 
-# Logs
+# Laravel caches and logs
+/storage/app/public
+/storage/debugbar/
+/storage/framework/
+/storage/logs/
+/bootstrap/cache/
+
+# Laravel build outputs
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/css/
+/public/js/
+
+# Composer & npm logs
+composer.lock
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Icon?
 
-# IDEs
+# IDEs and editors
 .vscode/
 .idea/
+*.sublime-*
+*.swp
+*.swo
+*.tmp
 
-# Environment
-.env
-.env.*
+# Coverage & test outputs
+coverage/
+.phpunit.result.cache
 
 # Misc
 *.log
 
-# Fonts and images (keep public/ content)
-!public/
+# Optional: ignore Homestead & Sail
+Homestead.json
+Homestead.yaml
+.env.sail
 
-# Build output
-/build/
+# Optional: ignore Docker
+.docker/
+Dockerfile
+docker-compose.yml
 
-# Others
-*.tmp
-*.swp
-*.swo
+# Keep public content
+!public/fonts/
+!public/images/
 
-# Optional: ignore coverage reports
-coverage/
-
+# End of file
