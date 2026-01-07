@@ -6,6 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// web.php
 Route::get('/feed', function () {
     $feedItems = json_decode(
         json_encode([
@@ -24,6 +25,20 @@ Route::get('/feed', function () {
                     'avatar' => '/images/michael.png',
                     'displayName' => 'Michael',
                     'handle' => '@mmich_jj'
+                ],
+                'replies' => [
+                    [
+                        'content' => '<p>Heh — this looks just like me!</p>',
+                        'postedDateTime' => '2h',
+                        'likeCount' => 50,
+                        'replyCount' => 10,
+                        'repostCount' => 10,
+                        'profile' => [
+                            'avatar' => '/images/simon-chilling.png',
+                            'displayName' => 'Simon',
+                            'handle' => '@simonswiss'
+                        ],
+                    ]
                 ]
             ]
         ])
@@ -50,6 +65,20 @@ Route::get('/profile', function () {
                     'avatar' => '/images/michael.png',
                     'displayName' => 'Michael',
                     'handle' => '@mmich_jj'
+                ],
+                'replies' => [
+                    [
+                        'content' => '<p>Heh — this looks just like me!</p>',
+                        'postedDateTime' => '2h',
+                        'likeCount' => 50,
+                        'replyCount' => 10,
+                        'repostCount' => 10,
+                        'profile' => [
+                            'avatar' => '/images/simon-chilling.png',
+                            'displayName' => 'Simon',
+                            'handle' => '@simonswiss'
+                        ],
+                    ]
                 ]
             ]
         ])
