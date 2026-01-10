@@ -12,7 +12,7 @@ Route::get('/feed', function () {
         json_encode([
             [
                 'postedDateTime' => '3h',
-                'content' => <<<srt
+                'content' => <<<'srt'
                     <p>
                         I made this! <a href="#">#myartwork</a> <a href="#">#pixl</a>
                     </p>
@@ -24,7 +24,7 @@ Route::get('/feed', function () {
                 'profile' => [
                     'avatar' => '/images/michael.png',
                     'displayName' => 'Michael',
-                    'handle' => '@mmich_jj'
+                    'handle' => '@mmich_jj',
                 ],
                 'replies' => [
                     [
@@ -36,11 +36,11 @@ Route::get('/feed', function () {
                         'profile' => [
                             'avatar' => '/images/simon-chilling.png',
                             'displayName' => 'Simon',
-                            'handle' => '@simonswiss'
+                            'handle' => '@simonswiss',
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ])
     );
 
@@ -52,7 +52,7 @@ Route::get('/profile', function () {
         json_encode([
             [
                 'postedDateTime' => '3h',
-                'content' => <<<srt
+                'content' => <<<'srt'
                     <p>
                         I made this! <a href="#">#myartwork</a> <a href="#">#pixl</a>
                     </p>
@@ -64,7 +64,7 @@ Route::get('/profile', function () {
                 'profile' => [
                     'avatar' => '/images/michael.png',
                     'displayName' => 'Michael',
-                    'handle' => '@mmich_jj'
+                    'handle' => '@mmich_jj',
                 ],
                 'replies' => [
                     [
@@ -76,11 +76,11 @@ Route::get('/profile', function () {
                         'profile' => [
                             'avatar' => '/images/simon-chilling.png',
                             'displayName' => 'Simon',
-                            'handle' => '@simonswiss'
+                            'handle' => '@simonswiss',
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ])
     );
 
