@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,7 +14,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
             $table->foreignId('parent_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('content');
+            $table->foreignId('repost_of_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('content')->nullable();
             $table->timestamps();
 
             $table->index('parent_id');
