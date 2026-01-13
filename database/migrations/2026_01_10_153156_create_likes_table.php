@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->unique(['profile_id', 'post_id']);
 
-            $table->index('post_id', 'created_at');
+            $table->index('post_id', 'post_id_index');
         });
     }
 
