@@ -25,4 +25,19 @@ class Like extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    public static function createLike(Profile $profile, Post $post): Like
+    {
+        return static::firstOrCreate([
+            'profile_id' => $profile->id,
+            'post_id' => $post->id,
+        ]);
+    }
+
+    public static function removeLike(Profile $profile, Post $post): int
+    {
+        return static::where('profile_id', $profile->id)
+            ->where('post_id', $post->id)
+            ->delete();
+    }
 }
