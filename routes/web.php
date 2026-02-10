@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// web.php
+Route::get('/{profile:handle}', [ProfileController::class, 'show'])->name('profile.show');
+
 Route::get('/feed', function () {
     $feedItems = json_decode(
         json_encode([

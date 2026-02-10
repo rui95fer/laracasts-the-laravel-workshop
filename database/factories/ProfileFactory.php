@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile>
+ * @extends Factory<Profile>
  */
 class ProfileFactory extends Factory
 {
@@ -17,12 +18,15 @@ class ProfileFactory extends Factory
      */
     public function definition(): array
     {
+        $handle = $this->faker->unique()->userName();
+
         return [
             'user_id' => User::factory(),
             'display_name' => $this->faker->name(),
-            'handle' => $this->faker->unique()->userName(),
+            'handle' => $handle,
             'bio' => $this->faker->sentences(3, true),
-            'avatar_url' => $this->faker->imageUrl(100, 100, 'people'),
+            'avatar_url' => 'https://dummyimage.com/90x90/eee/000',
+            'cover_url' => 'https://dummyimage.com/1400x640/555/ECA749?text='.$handle,
         ];
     }
 }

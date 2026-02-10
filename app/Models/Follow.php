@@ -46,7 +46,7 @@ class Follow extends Model
         }
 
         return self::where('follower_profile_id', $follower->id)
-                ->where('following_profile_id', $following->id)
-                ->delete() > 0;
+            ->where('following_profile_id', $following->id)
+            ->delete() > 0;
     }
 }
