@@ -1,8 +1,8 @@
 <li class="flex items-start gap-4 not-first:pt-2.5">
-    <a href="/{{ $item->profile->handle }}" class="shrink-0">
+    <a href="/profile" class="shrink-0">
         <img
-            src="{{ $item->profile->avatar_url }}"
-            alt="Avatar for {{ $item->profile->display_name }}"
+            src="{{ $post->profile->avatar_url }}"
+            alt="Avatar for {{ $post->profile->display_name }}"
             class="size-10 object-cover"
         />
     </a>
@@ -12,16 +12,16 @@
             <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5">
                     <p>
-                        <a class="hover:underline" href="/{{ $item->profile->handle }}">
-                            {{ $item->profile->display_name }}
+                        <a class="hover:underline" href="/profile">
+                            {{ $post->profile->display_name }}
                         </a>
                     </p>
-                    <p class="text-pixl-light/40 text-xs">{{ $item->created_at }}</p>
+                    <p class="text-pixl-light/40 text-xs">{{ $post->created_at }}</p>
                     <p>
                         <a
                             class="text-pixl-light/40 hover:text-pixl-light/60 text-xs"
-                            href="/{{ $item->profile->handle }}">
-                            {{ $item->profile->handle }}
+                            href="/profile">
+                            {{ $post->profile->handle }}
                         </a>
                     </p>
                 </div>
@@ -44,14 +44,7 @@
             <div
                 class="[&_a]:text-pixl mt-4 flex flex-col gap-3 text-sm [&_a]:hover:underline"
             >
-                {!! $item->content !!}
-
-                @if($item->isRepost() && $item->content != null)
-                    <ul>
-                        @include('partials.profile.post', ['item' => $item->repostOf])
-                    </ul>
-
-                @endif
+                {!! $post->content !!}
             </div>
             <!-- Action buttons -->
             <div class="mt-6 flex items-center justify-between gap-4">
@@ -87,7 +80,7 @@
                                 </defs>
                             </svg>
                         </button>
-                        <span class="text-sm">{{ $item->likes_count }}</span>
+                        <span class="text-sm">{{ $post->likes_count }}</span>
                     </div>
                     <!-- Comment -->
                     <div class="flex items-center gap-1">
@@ -120,7 +113,7 @@
                                 </defs>
                             </svg>
                         </button>
-                        <span class="text-sm">{{ $item->replies_count }}</span>
+                        <span class="text-sm">{{ $post->replies_count }}</span>
                     </div>
                     <!-- Re-post -->
                     <div class="flex items-center gap-1">
@@ -197,7 +190,7 @@
                                 />
                             </svg>
                         </button>
-                        <span class="text-sm">{{ $item->reposts_count }}</span>
+                        <span class="text-sm">{{ $post->reposts_count }}</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
@@ -278,6 +271,36 @@
                     </div>
                 </div>
             </div>
+            <!-- Reply form -->
+            <div
+                class="border-pixl-light/10 bg-pixl-light/3 mt-8 flex items-start gap-4 border-t p-4"
+            >
+                <a href="/profile" class="shrink-0">
+                    <img
+                        src="/images/adrian.png"
+                        alt="Avatar for Adrian"
+                        class="size-10 object-cover"
+                    />
+                </a>
+
+                @include('partials.post-form', [
+                    'labelText' => 'Reply Body',
+                    'fieldName' => 'reply',
+                    'placeholder' => "Reply to {$post->profile->displayName}'s post",
+                    'rows' => 5
+                ])
+            </div>
         </div>
+        <!-- Threaded replies -->
+        <ol>
+            <!-- Reply -->
+            @foreach($post->replies as $reply)
+                @include('partials.feed-item-reply', [
+                    'item' => $reply
+                ])
+            @endforeach
+
+            <!-- More replies... -->
+        </ol>
     </div>
 </li>
