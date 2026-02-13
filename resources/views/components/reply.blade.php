@@ -12,15 +12,19 @@
             <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5">
                     <p>
-                        <a class="hover:underline" href="{{ route('profiles.show', $profile) }}">
+                        <a class="hover:underline" href="{{ route('profiles.show', $post->profile) }}">
                             {{ $post->profile->display_name }}
                         </a>
                     </p>
-                    <p class="text-pixl-light/40 text-xs">{{ $post->created_at }}</p>
+                    <p class="text-pixl-light/40 text-xs">
+                        <a href="{{ route('posts.show', ['profile' => $post->profile, 'post' => $post]) }}">
+                            {{ $post->created_at }}
+                        </a>
+                    </p>
                     <p>
                         <a
                             class="text-pixl-light/40 hover:text-pixl-light/60 text-xs"
-                            href="{{ route('profiles.show', $profile) }}">
+                            href="{{ route('profiles.show', $post->profile) }}">
                             {{ $post->profile->handle }}
                         </a>
                     </p>
@@ -275,36 +279,18 @@
                 </div>
             @endif
 
-            <!-- Reply form -->
-            <div
-                class="border-pixl-light/10 bg-pixl-light/3 mt-8 flex items-start gap-4 border-t p-4"
-            >
-                <a href="/profile" class="shrink-0">
-                    <img
-                        src="/images/adrian.png"
-                        alt="Avatar for Adrian"
-                        class="size-10 object-cover"
-                    />
-                </a>
+            @if($showReplies)
+                <!-- Threaded replies -->
+                <ol>
+                    <!-- Reply -->
+                    @foreach($post->replies as $reply)
+                        <x-reply :post="$reply" :show-engagement="$showEngagement" :show-replies="$showReplies"/>
+                    @endforeach
 
-                @include('partials.post-form', [
-                    'labelText' => 'Reply Body',
-                    'fieldName' => 'reply',
-                    'placeholder' => "Reply to {$post->profile->displayName}'s post",
-                    'rows' => 5
-                ])
-            </div>
+                    <!-- More replies... -->
+                </ol>
+            @endif
+
         </div>
-        <!-- Threaded replies -->
-        <ol>
-            <!-- Reply -->
-            @foreach($post->replies as $reply)
-                @include('partials.feed-item-reply', [
-                    'item' => $reply
-                ])
-            @endforeach
-
-            <!-- More replies... -->
-        </ol>
     </div>
 </li>
